@@ -21,4 +21,6 @@ public class LoginTest extends TestBase {
             .shouldShowNavLink("Каталог")
             .shouldHaveFooter();
     }
+
+
 }

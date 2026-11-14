@@ -35,19 +35,30 @@ public class ProductListTest extends TestBase {
         assertFalse(page.isEmpty(), "Список товаров не должен быть пуст");
     }
 
-    @Test
-    @DisplayName("Открывается первый товар: Домашняя страница")
-    void homePageShouldOpenFirstProduct() {
-        HomePage page = new HomePage();
+    @DisplayName("Открывается первый товар")
+    @ParameterizedTest(name = "{displayName}: {0}")
+    @MethodSource("productListPages")
+    void pageShouldOpenFirstProduct(String name, ProductListPage page) {
         page.open();
         page.openFirstProduct().shouldBeOpened();
     }
 
-    @Test
-    @DisplayName("Открывается первый товар: Страница каталога")
-    void catalogPageShouldOpenFirstProduct() {
-        CatalogPage page = new CatalogPage();
-        page.open();
-        page.openFirstProduct().shouldBeOpened();
-    }
+
+//    @Test
+//    @DisplayName("Открывается первый товар: Домашняя страница")
+//    void homePageShouldOpenFirstProduct() {
+//        HomePage page = new HomePage();
+//        page.open();
+//        page.openFirstProduct().shouldBeOpened();
+//    }
+//
+//    @Test
+//    @DisplayName("Открывается первый товар: Страница каталога")
+//    void catalogPageShouldOpenFirstProduct() {
+//        CatalogPage page = new CatalogPage();
+//        page.open();
+//        page.openFirstProduct().shouldBeOpened();
+//    }
+
+
 }

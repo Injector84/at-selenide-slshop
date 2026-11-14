@@ -1,5 +1,6 @@
 package pages;
 
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
@@ -18,6 +19,7 @@ public class LoginPage extends BasePage {
     private final SelenideElement emailInput    = $x("//input[@name='email']");
     private final SelenideElement passwordInput = $x("//input[@name='password']");
     private final SelenideElement submitButton  = $x("//button[@type='submit']");
+    private final SelenideElement alert  = $x("//*[contains(@class,'alert-success')]");
 
     @Step("Открыть страницу входа")
     public LoginPage open() {
@@ -26,10 +28,16 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Войти под учётной записью покупателя")
-    public HomePage login(String email, String password) {
+    public HomePage login(String email, String password, boolean bFirst) {
+        if(bFirst) alert.shouldBe(Condition.visible);
         emailInput.shouldBe(Condition.visible).setValue(email);
         passwordInput.setValue(password);
         submitButton.click();
         return new HomePage();
     }
+
+    public HomePage login(String email, String password){
+        return login(email, password, false);
+    }
+
 }
