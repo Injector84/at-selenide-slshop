@@ -36,7 +36,7 @@ public class BasketPage extends BasePage {
     public ProductPage openFirstProduct() {
         $$x("//tbody/tr[1]/td[count(//th[normalize-space()='Товар']/preceding-sibling::th)+1]")
                 .first()
-                .scrollIntoView(true)
+                .scrollIntoView(false)
                 .click();
         return new ProductPage();
     }

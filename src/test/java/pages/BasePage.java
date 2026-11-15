@@ -55,12 +55,6 @@ public abstract class BasePage {
         return null;
     }
 
-    protected BasePage login(String login) {
-        nav.$$x(".//a").find(Condition.text(aLogin)).click();
-
-        return null;
-    }
-
     @Step("Проверить, что страница магазина открыта")
     public BasePage shouldShowTitleHeader(String text) {
         $$("h1").findBy(Condition.exactOwnText(text)).shouldBe(Condition.visible);

@@ -22,7 +22,7 @@ public class BasketTest extends TestBase {
     void shouldBeBasket() {
         new BasketPage()
                 .open()
-                .shouldShowTitleHeader(BasePage.aBasket)
+                .shouldShowTitleHeader(BasePage.Basket)
                 .shouldShowNavLink(BasePage.aCatalog)
                 .shouldShowNavLink(BasePage.aBasket)
                 .shouldShowNavLink(BasePage.aLogout);
