@@ -22,6 +22,8 @@ pipeline {
         stage('Run Ordered Tests') {
             steps {
                 bat 'gradlew.bat allTestsOrder -Dselenide.headless=true'
+                bat 'dir build'
+                bat 'dir build\\allure-results'
             }
         }
     }
