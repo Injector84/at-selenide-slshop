@@ -34,7 +34,7 @@ public class CatalogPage extends BasePage implements ProductListPage {
     @Step("Открыть первый товар из каталога")
     public ProductPage openFirstProduct() {
         $x("(//div[contains(@class,'product-card')]//h3/a)[1]")
-            .scrollIntoView(true)
+            .scrollIntoView(false)
             .click();
         return new ProductPage();
     }

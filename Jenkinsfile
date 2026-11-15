@@ -43,6 +43,7 @@ pipeline {
             allure includeProperties: false,
                    jdk: '',
                    results: [[path: 'build/allure-results']]
+                   archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
         }
     }
 }
