@@ -23,7 +23,7 @@ pipeline {
         stage('Update Register CSV') {
             steps {
                 powershell '''
-                    $date = Get-Date -Format "ddMMyyyy"
+                    $date = Get-Date -Format "ddMMyyyy_HHmmss"
                     $content = "email,name,password`ncustomer_${date}@test.local,customer_${date},customer_${date}"
                     Set-Content -Path "src/test/resources/register.csv" -Value $content -Encoding Ascii
                     Write-Host "register.csv успешно обновлен. Дата: $date"
