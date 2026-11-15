@@ -27,6 +27,9 @@ tasks.test {
 }
 
 tasks.withType(Test).configureEach {
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
     systemProperty 'selenide.browser',
             System.getProperty('selenide.browser', 'chrome')
 
