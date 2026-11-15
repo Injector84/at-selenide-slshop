@@ -5,7 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 /**
  * Базовый Page Object: только то, что есть на каждой странице.
@@ -26,19 +26,45 @@ public abstract class BasePage {
     protected final SelenideElement userGreeting = $x("//span[contains(@class,'user-greeting')]");
     protected final SelenideElement cartBadge = $x("//span[contains(@class,'badge')]");
     protected final SelenideElement nav = $x("//nav[contains(@class,'nav')]");
+
+    /**
+     Заголовки ссылок в siteHeader
+    */
+    public static final String aCatalog = "Каталог";
+    public static final String aBasket = "Корзина";
+    public static final String aLogin = "Войти";
+    public static final String aRegistration = "Регистрация";
+    public static final String aLogout = "Выйти";
+
+    /**
+     Заголовки страниц
+     */
     public static final String Catalog = "Каталог";
     public static final String Basket = "Корзина";
-    public static final String Login = "Войти";
-    public static final String Registration = "Регистрация";
 
     /**
      * Открыть страницу по относительному пути от baseUrl.
      * Ждём появления шапки — она есть везде, поэтому это надёжный
      * признак, что страница загрузилась.
+     *
+     * @return
      */
-    protected void open(String path) {
+    protected BasePage open(String path) {
         Selenide.open(path);
         siteHeader.shouldBe(Condition.visible);
+        return null;
+    }
+
+    protected BasePage login(String login) {
+        nav.$$x(".//a").find(Condition.text(aLogin)).click();
+
+        return null;
+    }
+
+    @Step("Проверить, что страница магазина открыта")
+    public BasePage shouldShowTitleHeader(String text) {
+        $$("h1").findBy(Condition.exactOwnText(text)).shouldBe(Condition.visible);
+        return this;
     }
 
     @Step("Проверить, что в шапке отображается имя пользователя")

@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.BasePage;
-import pages.LoginPage;
 import pages.RegPage;
 
 /**
@@ -15,16 +13,18 @@ import pages.RegPage;
  */
 public class RegisterTest extends TestBase {
 
-    @DisplayName("Покупатель входит через форму логина и видит шапку и подвал")
+    @DisplayName("Покупатель регистрируется через форму регистрации, входит и видит шапку и подвал")
     @ParameterizedTest(name = "{displayName}: {0}")
-    @CsvFileSource(resources = "customers.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "register.csv", numLinesToSkip = 1)
     void shouldRegisterAsCustomer(String email, String name, String password) {
         new RegPage()
                 .open()
                 .register(email, name, password)
                 .login(email, password)
                 .shouldBeLoggedInAs(name)
-                .shouldShowNavLink(BasePage.Catalog)
+                .shouldShowNavLink(BasePage.aCatalog)
+                .shouldShowNavLink(BasePage.aBasket)
+                .shouldShowNavLink(BasePage.aLogout)
                 .shouldHaveFooter();
     }
 }
