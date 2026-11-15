@@ -44,6 +44,8 @@ tasks.withType(Test).configureEach {
 
     systemProperty 'webdriver.chrome.verboseLogging',
             System.getProperty('webdriver.chrome.verboseLogging', 'false')
+
+    systemProperty 'selenide.browser.size', '1920x1080'
 }
 
 tasks.register('registerTest', Test) {
