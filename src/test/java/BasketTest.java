@@ -13,20 +13,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BasketTest extends TestBase {
 
     @BeforeEach
-void login(){
-new LoginPage().open().login("customer@test.local", "password");
+    void login() {
+        new LoginPage().open().login("customer@test.local", "password");
     }
 
-@Test
-@DisplayName("Проверка страницы корзины")
-void shouldBeBasket(){
-    new BasketPage()
-            .open()
-            .shouldShowTitleHeader(BasePage.aBasket)
-            .shouldShowNavLink(BasePage.aCatalog)
-            .shouldShowNavLink(BasePage.aBasket)
-            .shouldShowNavLink(BasePage.aLogout);
-}
+    @Test
+    @DisplayName("Проверка страницы корзины")
+    void shouldBeBasket() {
+        new BasketPage()
+                .open()
+                .shouldShowTitleHeader(BasePage.aBasket)
+                .shouldShowNavLink(BasePage.aCatalog)
+                .shouldShowNavLink(BasePage.aBasket)
+                .shouldShowNavLink(BasePage.aLogout);
+    }
 
     @Test
     @DisplayName("Проверка пустой корзины")
@@ -35,10 +35,9 @@ void shouldBeBasket(){
     }
 
 
-
     @Test
-    @DisplayName("Переход в каталог их корзины")
-    void shouldMoveToCatalog(){
+    @DisplayName("Переход в каталог из корзины")
+    void shouldMoveToCatalog() {
         new BasketPage()
                 .open()
                 .openCatalog()

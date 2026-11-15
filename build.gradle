@@ -42,3 +42,20 @@ tasks.withType(Test).configureEach {
     systemProperty 'webdriver.chrome.verboseLogging',
             System.getProperty('webdriver.chrome.verboseLogging', 'false')
 }
+
+tasks.register('registerTest', Test) {
+    useJUnitPlatform {
+        includeTags 'RegisterTest'
+    }
+}
+
+tasks.register('otherTests', Test) {
+    useJUnitPlatform {
+        excludeTags 'RegisterTest'
+    }
+}
+
+tasks.register('allTestsOrder') {
+    dependsOn 'registerTest', 'otherTests'
+    tasks.otherTests.mustRunAfter(tasks.registerTest)
+}

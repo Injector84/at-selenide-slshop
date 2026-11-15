@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.BasePage;
@@ -13,6 +14,7 @@ import pages.RegPage;
  */
 public class RegisterTest extends TestBase {
 
+    @Tag("RegisterTest")
     @DisplayName("Покупатель регистрируется через форму регистрации, входит и видит шапку и подвал")
     @ParameterizedTest(name = "{displayName}: {0}")
     @CsvFileSource(resources = "register.csv", numLinesToSkip = 1)
