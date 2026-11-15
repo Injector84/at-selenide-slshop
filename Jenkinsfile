@@ -21,7 +21,7 @@ pipeline {
 
         stage('Run Ordered Tests') {
             steps {
-                bat 'gradlew.bat allTestsOrder'
+                bat 'gradlew.bat allTestsOrder -Dselenide.headless=true'
             }
         }
     }
