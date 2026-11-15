@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+            bat 'if exist .git (git reset --hard && git clean -fd)'
                 checkout scm
             }
         }
@@ -19,9 +20,20 @@ pipeline {
             }
         }
 
+        stage('Update Register CSV') {
+            steps {
+                powershell '''
+                    $date = Get-Date -Format "ddMMyyyy"
+                    $content = "email,name,password`ncustomer_${date}@test.local,customer_${date},customer_${date}"
+                    Set-Content -Path "src/test/resources/register.csv" -Value $content -Encoding Ascii
+                    Write-Host "register.csv успешно обновлен. Дата: $date"
+                '''
+            }
+        }
+
         stage('Run Ordered Tests') {
             steps {
-                bat 'gradlew.bat allTestsOrder -Dselenide.headless=true'
+                bat 'gradlew.bat clean allTestsOrder -Dselenide.headless=true'
             }
         }
     }
